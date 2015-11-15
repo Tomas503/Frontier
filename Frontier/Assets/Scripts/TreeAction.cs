@@ -26,6 +26,7 @@ public class TreeAction : MonoBehaviour {
 						
 			peonMove.onAction = false;
 			peonMove.openWindow = false;
+			peonMove.actionButtonText = "Action";
 			}
 
 	}

@@ -8,17 +8,41 @@ public class PeonMovement :MonoBehaviour
 	public Rect windowRect;
 		
 	public  bool openWindow = false;
-	bool onTree = false;
+//	bool onTree = false;
 	public  bool onAction = false;
-	string actionButtonText;
+	public string actionButtonText;
+	Transform targetObject;
+	private Transform myTransform;
+	
+	
+	
+	void Start ()
+	{
+		actionButtonText = "Action";
+		
+	}
 	
 	void Update()
 	{	
-		if(!onAction)
-			actionButtonText = "Action";
+	
+		myTransform = gameObject.transform;
+			
 		if(onAction)
 			actionButtonText = "Choose Target";
+			
 		
+		PeonCharacterController peonCC = GetComponent<PeonCharacterController>();
+		targetObject = peonCC.target;
+		
+		if(targetObject != null)
+		{
+			if(Vector3.Distance(targetObject.position, myTransform.position) < 1.5f)
+			{
+				Debug.Log("close to target");
+				
+				peonCC.target = myTransform;
+			}
+		}
 		windowRect = new Rect((Screen.width / 2), (Screen.height / 2), 120, 100);
 	}
 	
