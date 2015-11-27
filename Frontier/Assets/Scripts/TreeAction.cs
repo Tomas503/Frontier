@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
+
 
 public class TreeAction : MonoBehaviour {
 
@@ -14,14 +16,14 @@ public class TreeAction : MonoBehaviour {
 	void OnMouseUp ()
 	{
 		GameObject Peon = GameObject.Find("Peon");
-		PeonMovement peonMove = Peon.GetComponent<PeonMovement>();
+		PeonAction peonMove = Peon.GetComponent<PeonAction>();
 		bool objectAction =  peonMove.onAction;
 		
 
 		if ( objectAction)
 		{
-
-			PeonCharacterController peonCC = Peon.GetComponent<PeonCharacterController>();
+			
+			AICharacterControl peonCC = Peon.GetComponent<AICharacterControl>();
 			peonCC.target =  targetObject;
 						
 			peonMove.onAction = false;
@@ -29,6 +31,11 @@ public class TreeAction : MonoBehaviour {
 			peonMove.actionButtonText = "Action";
 			}
 
+	}
+	
+	void OnTriggerEnter()
+	{
+		
 	}
 
 }
